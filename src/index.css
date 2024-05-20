@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* inmport fonts */
+
+
+@layer base{
+    h1{
+        @apply text-5xl font-bold
+    }
+    h2{
+        @apply text-[40px] font-bold
+    }
+    h3{
+        @apply text-[32px] font-bold
+    }
+    h4{
+        @apply text-2xl font-bold
+    }
+    h5{
+        @apply font-bold
+    }
+    h6{
+        @apply text-xs font-bold
+    }
+    th{
+        @apply text-xs
+    }
+}
+
+@layer components{
+    .logo{
+        @apply text-xl font-bold font-mono
+    }
+    .blur-peach-purple{
+        background-color:  #F8C9A4 ;
+        height: 10%;
+        box-shadow: 20px 0 200px 100px  #F8C9A4 , 200px 0 200px 100px#C5A5F5;
+    }
+    .blur-peach{
+        background-color:  #F8C9A4 ;
+        height: 10%;
+        box-shadow: 50px 0 200px 100px  #F8C9A4 ;
+    }
+    .blur-green{
+        background-color:  #58BD7D ;
+        height: 10%;
+        box-shadow: 50px 0 200px 150px  #58BD7D ;
+    }
+    .blur-purple{
+        background-color: #C5A5F5 ;
+        height: 10%;
+        box-shadow: 50px 0 200px 100px #C5A5F5 ;
+    }
+    .blur-red{
+        background-color: rgb(230, 143, 143) ;
+        height: 10%;
+        box-shadow: 50px 0 200px 100px  rgb(230, 143, 143) ;
+    }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
