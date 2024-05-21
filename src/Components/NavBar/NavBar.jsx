@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import useToggle from "../../Hooks/useToggle";
 import userProfile from "../../assets/icons/userProfile.svg";
+import MobileNavBar from "./MobileNavBar";
 
 function NavBar() {
-  const [toggle, handleToggle] = useToggle(false);
   const [theme, setTheme] = useState("light");
+  const [toggle, handleToggle] = useToggle(false);
+  const [hamburger, setHamburger] = useToggle(false);
+
   const handleTheme = () => setTheme(theme == "light" ? "dark" : "light");
   useEffect(() => {
     if (theme == "dark" || localStorage.getItem("theme") == "dark") {
@@ -37,18 +40,16 @@ function NavBar() {
           <option value="jpy">JPY</option>
         </select>
       </article>
-      <article className="flex relative">
-        <figure
-          onClick={handleTheme}
-          className="cursor-pointer self-center mr-4"
-        >
+      <article className="flex relative gap-2">
+        <figure onClick={handleTheme} className="cursor-pointer self-center">
           {theme == "light" ? (
             <svg
+              // sun
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6"
+              className="w-6 h-6 "
             >
               <path
                 strokeLinecap="round"
@@ -58,11 +59,12 @@ function NavBar() {
             </svg>
           ) : (
             <svg
+              // moon
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6"
+              className="w-6 h-6 moon"
             >
               <path
                 strokeLinecap="round"
@@ -74,16 +76,54 @@ function NavBar() {
         </figure>
         <figure className="cursor-pointer">
           <img src={userProfile} alt="" onClick={handleToggle} />
+          {toggle && (
+            <div className="absolute -bottom-20 shadow-md p-3 divide-y-[1px] z-10 bg-abs-white divide-white-90 dark:bg-abs-black rounded-sm">
+              <p>Profile</p>
+              <p>Logout</p>
+            </div>
+          )}
         </figure>
-        {toggle && (
-          <div className="absolute -bottom-20 shadow-md p-3 divide-y-[1px] z-10 bg-abs-white divide-white-90 dark:bg-abs-black rounded-sm">
-            <p>Profile</p>
-            <p>Logout</p>
-          </div>
-        )}
+        <figure className="self-center md:hidden">
+          {hamburger ? (
+            <svg
+              // hamburger
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              className="w-6 h-6 x-marker"
+              onClick={setHamburger}
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18 18 6M6 6l12 12"
+              />
+            </svg>
+          ) : (
+            // x marker
+            <svg
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              className="w-6 h-6 hamburger"
+              onClick={setHamburger}
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3.75 9h16.5m-16.5 6.75h16.5"
+              />
+            </svg>
+          )}
+          {hamburger && <MobileNavBar />}
+        </figure>
       </article>
     </section>
   );
 }
+
+
 
 export default NavBar;

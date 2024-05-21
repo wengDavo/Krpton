@@ -18,7 +18,7 @@ function Market() {
         <div className="flex text-xs md:gap-x-2">
           {coinType.map(({ type }, idx) => (
             <p
-              className="rounded-reg hover:bg-primary hover:bg-opacity-50 hover:text-abs-white p-1 px-2 cursor-pointer"
+              className="rounded-reg hover:bg-warning-300 hover:bg-opacity-50 hover:text-abs-white p-1 px-2 cursor-pointer"
               key={idx}
             >
               {type}
@@ -26,7 +26,6 @@ function Market() {
           ))}
         </div>
         <div>
-          {/* come back and increase the number of table heads */}
           <table className="text-xs border-separate border-spacing-4 ">
             <thead>
               <tr className="">
@@ -37,6 +36,14 @@ function Market() {
                 <th className="hidden md:table-cell">Market Cap</th>
                 <th className="hidden md:table-cell">24 %</th>
                 <th className="hidden md:table-cell">Last 7 Days</th>
+                <th className="hidden md:table-cell">24 High Price</th>
+                <th className="hidden md:table-cell">24 Low Price</th>
+                <th className="hidden md:table-cell">Chart</th>
+                <th className="hidden md:table-cell">All Time High</th>
+                <th className="hidden md:table-cell">Circultaing Supply</th>
+                <th className="hidden md:table-cell">Total Supply</th>
+                <th className="hidden md:table-cell">Volume</th>
+                <th></th>
                 <th></th>
               </tr>
             </thead>

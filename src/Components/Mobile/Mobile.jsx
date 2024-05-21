@@ -38,7 +38,7 @@ function Mobile() {
       <article className="order-1">
         <figure className="relative">
           <img src={scanDownload} alt="" />
-          <figcaption className="absolute -left-2 top-7 border border-white-97 bg-white-99 p-1 px-2 shadow-md rounded-md  dark:bg-abs-dark dark:text-primary dark:border-primary md:top-[70px] md:left-2">
+          <figcaption className="absolute -left-2 top-7 border border-white-97 bg-white-99 p-1 px-2 shadow-md rounded-md  dark:bg-abs-dark dark:text-warning-300 dark:border-primary md:top-[70px] md:left-2">
             Scan To Download
           </figcaption>
         </figure>

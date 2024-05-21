@@ -27,7 +27,7 @@ function Hero() {
               dolorum cupiditate nobis, ad est fuga ullam iste accusamus
               possimus voluptatum.
             </p>
-            <button className="bg-primary text-sm p-2 rounded-lg text-abs-white border dark:bg-abs-dark">
+            <button className="bg-warning-500 text-sm p-2 rounded-lg text-abs-white border dark:bg-abs-dark dark:hover:bg-warning-400">
               Get Started Now
             </button>
           </div>
@@ -47,12 +47,12 @@ function Hero() {
           </figure>
         </div>
       </article>
-      <article className="grid shadow-lg p-2 gap-2 border border-white-95 rounded-md dark:border-grey-15 md:p-6 md:w-[90%] md:mx-auto">
+      <article className="grid shadow-lg p-2 gap-2 border border-white-95 rounded-md dark:border-neutral-15 md:p-6 md:w-[90%] md:mx-auto">
         <ul className="flex gap-x-2">
           {category.map((cat, idx) => {
             return (
               <li
-                className="rounded-reg border border-primary text-xs py-1 px-4 hover:bg-primary hover:bg-opacity-50 cursor-pointer "
+                className="rounded-reg border border-warning-300 text-xs py-1 px-4 hover:bg-warning-300 hover:bg-opacity-50 cursor-pointer "
                 key={idx}
               >
                 {cat.category}

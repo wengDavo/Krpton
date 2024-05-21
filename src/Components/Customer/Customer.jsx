@@ -10,7 +10,7 @@ import CustomerReviewCard from "./CustomerReviewCard";
 
 function Customer() {
   const sliderRef = useRef(null);
-  const scrollAmount = 100;
+  const scrollAmount = 500;
   const [reviews, setReviews] = useState(CustomerReviews);
 
   return (
@@ -61,7 +61,7 @@ function Customer() {
           }}
         />
         <div
-          className="flex overflow-x-hidden no-scrollbar scroll-smooth gap-2"
+          className="flex overflow-x-hidden no-scrollbar scroll-smooth gap-2 "
           ref={sliderRef}
         >
           {reviews.map((card, idx) => {

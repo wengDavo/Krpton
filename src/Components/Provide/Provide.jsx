@@ -36,7 +36,7 @@ function Provide() {
             Staking, Mining, And Margin.
           </p>
         </div>
-        <button className="border border-primary p-2 rounded-[20px] text-xs w-[154px]">
+        <button className="border border-warning-300 p-2 rounded-[20px] text-xs w-[154px]">
           Explore More
         </button>
       </article>

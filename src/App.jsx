@@ -1,7 +1,8 @@
 import NavBar from "./Components/NavBar";
 import Footer from "./Components/Footer";
+import { Routes, Route } from "react-router-dom";
 
-import { Home } from "./Pages";
+import { Home, MarketPlace } from "./Pages";
 
 function App() {
   return (
@@ -10,7 +11,10 @@ function App() {
         <NavBar />
       </header>
       <main>
-        <Home />
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/market" element={<MarketPlace />}></Route>
+        </Routes>
       </main>
       <Footer />
     </section>
