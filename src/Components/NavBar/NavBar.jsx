@@ -1,34 +1,24 @@
-import { useState, useEffect } from "react";
 import useToggle from "../../Hooks/useToggle";
 import userProfile from "../../assets/icons/userProfile.svg";
 import MobileNavBar from "./MobileNavBar";
+import { NavLink } from "react-router-dom";
+
+import { useGlobalContext } from "../../App";
 
 function NavBar() {
-  const [theme, setTheme] = useState("light");
+  const { theme, handleTheme } = useGlobalContext();
   const [toggle, handleToggle] = useToggle(false);
   const [hamburger, setHamburger] = useToggle(false);
-
-  const handleTheme = () => setTheme(theme == "light" ? "dark" : "light");
-  useEffect(() => {
-    if (theme == "dark" || localStorage.getItem("theme") == "dark") {
-      localStorage.setItem("theme", "dark");
-      document.documentElement.classList.add("dark");
-    }
-    if (theme == "light" || localStorage.getItem("theme") == "light") {
-      localStorage.setItem("theme", "light");
-      document.documentElement.classList.remove("dark");
-    }
-  }, [theme]);
 
   return (
     <section className="flex font-medium justify-between items-center gap-4">
       <p className="logo">Krypton</p>
       <article className="hidden md:flex md:mr-auto">
         <menu className="flex *:ml-4">
-          <li>Markets</li>
+          <NavLink to="/market">Market</NavLink>
           <li>Watchlist</li>
           <li>Portfolio</li>
-          <li>Learn</li>
+          <NavLink to="/trade">Trade</NavLink>
         </menu>
       </article>
       <article className="hidden md:flex gap-4">
@@ -89,14 +79,14 @@ function NavBar() {
               // hamburger
               fill="none"
               viewBox="0 0 24 24"
-              stroke-width="1.5"
+              strokeWidth="1.5"
               stroke="currentColor"
               className="w-6 h-6 x-marker"
               onClick={setHamburger}
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 d="M6 18 18 6M6 6l12 12"
               />
             </svg>
@@ -105,14 +95,14 @@ function NavBar() {
             <svg
               fill="none"
               viewBox="0 0 24 24"
-              stroke-width="1.5"
+              strokeWidth="1.5"
               stroke="currentColor"
               className="w-6 h-6 hamburger"
               onClick={setHamburger}
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 d="M3.75 9h16.5m-16.5 6.75h16.5"
               />
             </svg>
@@ -123,7 +113,5 @@ function NavBar() {
     </section>
   );
 }
-
-
 
 export default NavBar;

@@ -6,8 +6,10 @@ function MarketCap() {
         <p className="text-xs md:w-[50%]">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum eum
           dolores non minus temporibus, vel eligendi! Ducimus incidunt officiis
-          magni.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo culpa, quia molestias, id iusto nihil adipisci autem est sunt voluptatum hic consectetur quisquam. Repudiandae facilis tenetur molestiae quod voluptate quos.
+          magni. Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo
+          culpa, quia molestias, id iusto nihil adipisci autem est sunt
+          voluptatum hic consectetur quisquam. Repudiandae facilis tenetur
+          molestiae quod voluptate quos.
         </p>
       </article>
       <article className="p-2 flex overflow-x-scroll no-scrollbar">

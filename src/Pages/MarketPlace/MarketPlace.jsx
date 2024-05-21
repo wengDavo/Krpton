@@ -1,9 +1,7 @@
 import Market from "../../Components/Market";
-import {
-  MarketPagination,
-  MarketCap,
-  MarketList,
-} from "../../Components/Market";
+import { MarketPagination} from "../../Components/Market";
+import MarketCap from "../../Components/MarketCap";
+import CryptoSearch from "../../Components/CryptoSearch";
 
 function MarketPlace(){
     return (
@@ -14,7 +12,7 @@ function MarketPlace(){
           <MarketPagination />
         </article>
         <article>
-          <MarketList />
+          <CryptoSearch />
         </article>
       </section>
     );
