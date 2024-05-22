@@ -1,7 +1,7 @@
 import useToggle from "../../Hooks/useToggle";
 import userProfile from "../../assets/icons/userProfile.svg";
 import MobileNavBar from "./MobileNavBar";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import { useGlobalContext } from "../../App";
 
@@ -12,13 +12,13 @@ function NavBar() {
 
   return (
     <section className="flex font-medium justify-between items-center gap-4">
-      <p className="logo">Krypton</p>
+      <NavLink to="/" className="logo">Krypton</NavLink>
       <article className="hidden md:flex md:mr-auto">
         <menu className="flex *:ml-4">
           <NavLink to="/market">Market</NavLink>
-          <li>Watchlist</li>
-          <li>Portfolio</li>
           <NavLink to="/trade">Trade</NavLink>
+          {/* <NavLink to="/wallet">Wallet</NavLink> */}
+          <p>Wallet</p>
         </menu>
       </article>
       <article className="hidden md:flex gap-4">
@@ -67,13 +67,13 @@ function NavBar() {
         <figure className="cursor-pointer">
           <img src={userProfile} alt="" onClick={handleToggle} />
           {toggle && (
-            <div className="absolute -bottom-20 shadow-md p-3 divide-y-[1px] z-10 bg-abs-white divide-white-90 dark:bg-abs-black rounded-sm">
-              <p>Profile</p>
-              <p>Logout</p>
+            <div className="absolute -bottom-20 right-1 shadow-md p-3 divide-y-[1px] z-10 bg-abs-white divide-white-90 dark:bg-abs-black rounded-sm grid">
+              <Link to='login'>Login</Link>
+              <Link to='/register'>Register</Link>
             </div>
           )}
         </figure>
-        <figure className="self-center md:hidden">
+        <figure className="self-center md:hidden cursor-pointer">
           {hamburger ? (
             <svg
               // hamburger

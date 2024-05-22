@@ -1,7 +1,7 @@
 import NavBar from "./Components/NavBar";
 import Footer from "./Components/Footer";
 import { Routes, Route } from "react-router-dom";
-import { Home, MarketPlace, Trade } from "./Pages";
+import { Home, MarketPlace, Trade, Register, Login, Wallet } from "./Pages";
 
 import { createContext, useContext } from "react";
 import { useState, useEffect } from "react";
@@ -33,6 +33,9 @@ function App() {
             <Route path="/" element={<Home />}></Route>
             <Route path="/market" element={<MarketPlace />}></Route>
             <Route path="/trade" element={<Trade />}></Route>
+            <Route path="/register" element={<Register />}></Route>
+            <Route path="/login" element={<Login />}></Route>
+            {/* <Route path="/wallet" element={<Wallet />}></Route> */}
           </Routes>
         </main>
         <Footer />

@@ -4,7 +4,7 @@ import { useState } from "react";
 function CryptoSearch() {
   const [isSearching, setIsSearching] = useState(false);
   return (
-    <section className="p-2 space-y-4 border border-white-90 dark:border-neutral-900 ">
+    <section className="space-y-4 border border-white-90 dark:border-neutral-900 ">
       <article>
         <form action="" className="flex justify-between">
           <label
@@ -32,7 +32,7 @@ function CryptoSearch() {
               id=""
               placeholder="Search by name"
               className="border-none outline-none pl-2 rounded-sm text-sm dark:bg-abs-dark"
-              onClick={()=>setIsSearching(!isSearching)}
+              onClick={() => setIsSearching(!isSearching)}
             />
           </label>
           <label htmlFor="">
