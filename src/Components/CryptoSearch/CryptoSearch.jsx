@@ -1,8 +1,26 @@
 import CryptoSimple from "../CryptoSimple";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function CryptoSearch() {
   const [isSearching, setIsSearching] = useState(false);
+  const [coin, setCoin] = useState(null);
+  useEffect(() => {
+    async function getCoin(){
+      try{
+        const response = await axios.get(
+          "https://api.coingecko.com/api/v3/ping?x_cg_demo_api_key=CG-1vm9ztrJYa4JVYWjxxvCs9kw"
+        );
+        setCoin(response);
+        console.log(response);
+      }
+      catch(error){
+        console.error(error);
+      }
+    }
+    getCoin();
+  }, []);
+
   return (
     <section className="space-y-4 border border-white-90 dark:border-neutral-900 ">
       <article>

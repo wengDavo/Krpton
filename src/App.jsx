@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 
 const GlobalContext = createContext();
 export const useGlobalContext = () => useContext(GlobalContext);
+// const apiKey = process.env.REACT_APP_API_KEY;
 
 function App() {
   const [theme, setTheme] = useState("light");
@@ -23,8 +24,8 @@ function App() {
     }
   }, [theme]);
   return (
-    <GlobalContext.Provider value={{ theme, handleTheme }}>
-      <section className="p-4 text-abs-black dark:text-abs-white dark:bg-abs-dark space-y-6 md:space-y-20">
+    <GlobalContext.Provider value={{ theme, handleTheme}}>
+      <section className="p-4 space-y-6 text-abs-black dark:text-abs-white dark:bg-abs-dark md:space-y-20">
         <header>
           <NavBar />
         </header>

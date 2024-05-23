@@ -4,11 +4,11 @@ function CustomerReviewCard({ name, position, review, img }) {
       <div className="flex">
         <img src={img} alt="" className="md:w-[80px] aspect-square" />
         <div className="p-2">
-          <p className="">{name}</p>
-          <p className="text-xs">{position}</p>
+          <p className="capitalize">{name}</p>
+          <p className="text-xs uppercase">{position}</p>
         </div>
       </div>
-      <figcaption className="text-xs px-2">{review}</figcaption>
+      <figcaption className="px-2 text-xs">{review}</figcaption>
     </figure>
   );
 }

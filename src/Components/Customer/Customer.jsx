@@ -2,6 +2,10 @@ import { useRef, useState } from "react";
 
 import lola from "../../assets/people/lola.svg";
 import tod from "../../assets/people/todd.svg";
+import Avatar1 from "../../assets/people/Avatar1.svg";
+import Avatar2 from "../../assets/people/Avatar1.svg";
+import Avatar3 from "../../assets/people/Avatar3.svg";
+
 import arrowEast from "../../assets/icons/arrow-east.svg";
 import arrowWest from "../../assets/icons/arrow-west.svg";
 
@@ -15,10 +19,10 @@ function Customer() {
 
   return (
     <section>
-      <article className="text-center grid gap-2">
+      <article className="grid gap-2 text-center">
         <h3>Our Customers Love What We Do</h3>
         <p>Trade Your Ideas Into Reality with us with Krypton</p>
-        <figure className="mb-40 relative">
+        <figure className="relative mb-40">
           <img
             src={lola}
             alt=""
@@ -30,21 +34,21 @@ function Customer() {
             className="w-[50px] aspect-square z-10 absolute left-[30%] md:left-[44%]"
           />
           <img
-            src={lola}
+            src={Avatar1}
             alt=""
             className="w-[50px] aspect-square z-20 absolute left-[40%] md:left-[48%]"
           />
           <img
-            src={tod}
+            src={Avatar2}
             alt=""
             className="w-[50px] aspect-square z-30 absolute left-[50%] md:left-[52%]"
           />
           <img
-            src={lola}
+            src={Avatar3}
             alt=""
             className="w-[50px] aspect-square z-40 absolute left-[60%] md:left-[56%]"
           />
-          <figcaption className="absolute top-10 m-2 left-1/2 transform -translate-x-1/2 translate-y-1/2 text-xs font-bold">
+          <figcaption className="absolute m-2 text-xs font-bold transform -translate-x-1/2 translate-y-1/2 top-10 left-1/2">
             30+ Customer Reviews
           </figcaption>
         </figure>
@@ -61,7 +65,7 @@ function Customer() {
           }}
         />
         <div
-          className="flex overflow-x-hidden no-scrollbar scroll-smooth gap-2 "
+          className="flex gap-2 overflow-x-hidden no-scrollbar scroll-smooth "
           ref={sliderRef}
         >
           {reviews.map((card, idx) => {

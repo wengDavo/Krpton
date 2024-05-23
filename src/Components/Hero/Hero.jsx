@@ -2,16 +2,44 @@ import coins from "../../assets/images/coinGold.svg";
 import traffic from "../../assets/icons/trafficX.svg";
 import coinBade from "../../assets/icons/CoinBade.svg";
 import aks from "../../assets/icons/AKSPRODUCT.svg";
-import CryptoCard from "./CryptoCard";
-import { useState } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
+import axios from "axios";
+import TrendingCrypto from "../TrendingCrypto";
+import TrendingNft from "../TrendingNft";
+import TrendingCategory from "../TrendingCategory";
 
 function Hero() {
-  let [category, setCategory] = useState([
-    { category: "Crypto" },
-    { category: "Defi" },
-    { category: "NFT" },
-    { category: "Meta" },
-  ]);
+  const apiKey = import.meta.env.COIN_GECKO_API_KEY;
+  const [tab, setTab] = useState("crypto");
+  const [trending, setTrending] = useState([]);
+  const [crypto, setCrtpyo] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    async function getTrending() {
+      try {
+        const response = await axios({
+          method: "get",
+          url: "https://api.coingecko.com/api/v3/search/trending",
+          headers: {
+            x_cg_demo_api_key: apiKey,
+            Accept: "application/json",
+          },
+        });
+        setTrending(response.data)
+        setCrtpyo(response.data.coins)
+        setError(null);
+      } catch (error) {
+        console.error(error.message);
+        setError(error.message)
+        setTrending(null)
+      } finally {
+        setLoading(false);
+      }
+    }
+    getTrending();
+  }, []);
   return (
     <section className="space-y-10">
       <article className="grid gap-20 md:grid-cols-2 ">
@@ -21,13 +49,15 @@ function Hero() {
               Learn, Buy & Sell Crypto Easily
               <div className="absolute bottom-0 blur-peach-purple z-[-10] dark:z-0 "></div>
             </h2>
-            <p className="text-sm font-medium my-2">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima
-              ea quidem deleniti saepe odit laboriosam! Sequi quis odio neque
-              dolorum cupiditate nobis, ad est fuga ullam iste accusamus
-              possimus voluptatum.
+            <p className="my-2 text-sm font-medium">
+              Krypton is your gateway to the world of digital currencies.
+              Designed with both beginners and experienced users in mind,
+              Krypton offers a seamless, secure, and efficient platform for
+              managing all your cryptocurrency needs. Whether you're looking to
+              buy, sell, trade, or simply stay informed about the latest trends
+              in the crypto market, Krypton has got you covered.
             </p>
-            <button className="bg-warning-500 text-sm p-2 rounded-lg text-abs-white border dark:bg-abs-dark dark:hover:bg-warning-400">
+            <button className="p-2 text-sm border rounded-lg bg-warning-500 text-abs-white dark:bg-abs-dark dark:hover:bg-warning-400">
               Get Started Now
             </button>
           </div>
@@ -49,27 +79,67 @@ function Hero() {
       </article>
       <article className="grid shadow-lg p-2 gap-2 border border-white-95 rounded-md dark:border-neutral-15 md:p-6 md:w-[90%] md:mx-auto">
         <ul className="flex gap-x-2">
-          {category.map((cat, idx) => {
-            return (
-              <li
-                className="rounded-reg border border-warning-300 text-xs py-1 px-4 hover:bg-warning-300 hover:bg-opacity-50 cursor-pointer "
-                key={idx}
-              >
-                {cat.category}
-              </li>
-            );
-          })}
+          <li
+            className="px-4 py-1 text-xs border cursor-pointer rounded-reg border-warning-300 hover:bg-warning-300 hover:bg-opacity-50"
+            onClick={() => setTab("crypto")}
+          >
+            Crypto
+          </li>
+          <li
+            className="px-4 py-1 text-xs border cursor-pointer rounded-reg border-warning-300 hover:bg-warning-300 hover:bg-opacity-50"
+            onClick={() => setTab("nft")}
+          >
+            NFTS
+          </li>
+          <li
+            className="px-4 py-1 text-xs border cursor-pointer rounded-reg border-warning-300 hover:bg-warning-300 hover:bg-opacity-50"
+            onClick={() => setTab("all")}
+          >
+            see all
+          </li>
         </ul>
-        <div className="flex overflow-y-scroll no-scrollbar gap-1">
-          <CryptoCard />
-          <CryptoCard />
-          <CryptoCard />
-          <CryptoCard />
-          <CryptoCard />
-          <CryptoCard />
-          <CryptoCard />
-          <CryptoCard />
-          <CryptoCard />
+        <div className="flex gap-1 overflow-y-scroll no-scrollbar">
+          {(function () {
+            switch (tab) {
+              case "crypto":
+                return (
+                  <>
+                    {crypto.map((trendingCrypto) => {
+                      return (
+                        <TrendingCrypto
+                          {...trendingCrypto.item}
+                          key={trendingCrypto.item.id}
+                        />
+                      );
+                    })}
+                  </>
+                );
+
+              case "nft":
+                return (
+                  <>
+                    {trending.nfts.map((trendingNft) => {
+                      return (
+                        <TrendingNft {...trendingNft} key={trendingNft.id} />
+                      );
+                    })}
+                    ;
+                  </>
+                );
+              case "all":
+                return (
+                  <>
+                    {trending.categories.map((cat) => {
+                      return <TrendingCategory {...cat} key={cat.id} />;
+                    })}
+                  </>
+                );
+
+              default:
+                return <div>...</div>;
+            }
+          })()}
+          {/* implement auto rotating carousel */}
         </div>
       </article>
     </section>

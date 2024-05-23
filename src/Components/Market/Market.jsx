@@ -1,15 +1,39 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CoinRow from "./CoinRow";
+import axios from "axios";
 
 function Market() {
-  let [coinType, setCoinType] = useState([
-    { type: "Meta" },
-    { type: "Entertainment" },
-    { type: "Energy" },
-    { type: "NFT" },
-    { type: "Gaming" },
-    { type: "View all" },
-  ]);
+  const [coins, setCoins] = useState([]);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const apiKey = import.meta.env.COIN_GECKO_API_KEY;
+  useEffect(() => {
+    async function getCoins() {
+      try {
+        let response = await axios({
+          method: "GET",
+          url: "https://api.coingecko.com/api/v3/coins/markets",
+          headers: {
+            Accept: "application/json",
+            x_cg_demo_api_key: apiKey,
+          },
+          params: {
+            per_page: "20",
+            vs_currency: "usd",
+          },
+        });
+        console.log(response.data);
+        setCoins(response.data);
+      } catch (error) {
+        setError(error);
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    getCoins();
+  }, []);
+  let [coinType, setCoinType] = useState([{ type: "Crypto" }]);
   return (
     <section className="relative">
       <h3>Market Update</h3>
@@ -18,7 +42,7 @@ function Market() {
         <div className="flex text-xs md:gap-x-2">
           {coinType.map(({ type }, idx) => (
             <p
-              className="rounded-reg hover:bg-warning-300 hover:bg-opacity-50 hover:text-abs-white p-1 px-2 cursor-pointer"
+              className="p-1 px-2 cursor-pointer rounded-reg bg-warning-300 hover:bg-opacity-50 hover:text-abs-white dark:text-warning-00"
               key={idx}
             >
               {type}
@@ -26,31 +50,33 @@ function Market() {
           ))}
         </div>
         <div>
-          <table className="text-xs border-separate border-spacing-4 ">
+          <table className="text-xs border-separate border-spacing-4 md:border-spacing-2">
             <thead>
               <tr className="">
-                <th></th>
                 <th>#</th>
-                <th>Name</th>
-                <th>last Price</th>
-                <th className="hidden md:table-cell">Market Cap</th>
-                <th className="hidden md:table-cell">24 %</th>
-                <th className="hidden md:table-cell">Last 7 Days</th>
-                <th className="hidden md:table-cell">24 High Price</th>
-                <th className="hidden md:table-cell">24 Low Price</th>
-                <th className="hidden md:table-cell">Chart</th>
-                <th className="hidden md:table-cell">All Time High</th>
-                <th className="hidden md:table-cell">Circultaing Supply</th>
-                <th className="hidden md:table-cell">Total Supply</th>
-                <th className="hidden md:table-cell">Volume</th>
                 <th></th>
+                <th className=""></th>
+                <th className="hidden md:table-cell">Symbol</th>
+                <th className="hidden md:table-cell">Current Price</th>
+                <th className="hidden md:table-cell">Market Cap</th>
+                <th className="hidden md:table-cell">
+                  Fully Diluted Valuation
+                </th>
+                <th className="hidden md:table-cell">Total Volume</th>
+                <th className="hidden md:table-cell">high 24</th>
+                <th className="hidden md:table-cell">Low 24</th>
+                <th className="hidden md:table-cell">Price Change %</th>
+                <th className="hidden md:table-cell">Circulating Supply</th>
+                <th className="hidden md:table-cell">Total Supply</th>
+                <th className="hidden md:table-cell">Ath</th>
+                <th className="hidden md:table-cell">Atl</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
-              <CoinRow />
-              <CoinRow />
-              <CoinRow />
+              {coins.map((coin) => {
+                return <CoinRow key={coin.id} {...coin} />;
+              })}
             </tbody>
             <tfoot></tfoot>
           </table>
