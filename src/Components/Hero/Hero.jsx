@@ -123,7 +123,7 @@ function Hero() {
                         <TrendingNft {...trendingNft} key={trendingNft.id} />
                       );
                     })}
-                    ;
+                    
                   </>
                 );
               case "all":
