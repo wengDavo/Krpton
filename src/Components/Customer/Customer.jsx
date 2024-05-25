@@ -3,18 +3,15 @@ import { useRef, useState } from "react";
 import lola from "../../assets/people/lola.svg";
 import tod from "../../assets/people/todd.svg";
 import Avatar1 from "../../assets/people/Avatar1.svg";
-import Avatar2 from "../../assets/people/Avatar1.svg";
+import Avatar2 from "../../assets/people/Avatar2.svg";
 import Avatar3 from "../../assets/people/Avatar3.svg";
 
-import arrowEast from "../../assets/icons/arrow-east.svg";
-import arrowWest from "../../assets/icons/arrow-west.svg";
 
 import { CustomerReviews } from "./CustomerReviews";
 import CustomerReviewCard from "./CustomerReviewCard";
+import Carousel from '../Carousel'
 
 function Customer() {
-  const sliderRef = useRef(null);
-  const scrollAmount = 500;
   const [reviews, setReviews] = useState(CustomerReviews);
 
   return (
@@ -53,35 +50,11 @@ function Customer() {
           </figcaption>
         </figure>
       </article>
-      {/* come back for the carousel */}
-      <article className="relative">
-        <img
-          src={arrowWest}
-          alt="arrow left"
-          className="absolute left-3 top-[50%] shadow-sm rounded-full bg-white-97 cursor-pointer"
-          onClick={() => {
-            const container = sliderRef.current;
-            container.scrollLeft -= scrollAmount;
-          }}
-        />
-        <div
-          className="flex gap-2 overflow-x-hidden no-scrollbar scroll-smooth "
-          ref={sliderRef}
-        >
-          {reviews.map((card, idx) => {
-            return <CustomerReviewCard {...card} key={idx} />;
-          })}
-        </div>
-        <img
-          src={arrowEast}
-          alt="arrow right"
-          className="absolute right-3 transform top-[50%] shadow-sm rounded-full bg-white-97 cursor-pointer"
-          onClick={() => {
-            const container = sliderRef.current;
-            container.scrollLeft += scrollAmount;
-          }}
-        />
-      </article>
+      <Carousel>
+        {reviews.map((card, idx) => {
+          return <CustomerReviewCard {...card} key={idx} />;
+        })}
+      </Carousel>
     </section>
   );
 }
